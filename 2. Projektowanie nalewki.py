@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog
 import pickle
 
-#Funkcje Przycisków:
+
 def check(state_next):
     """Function that change button_next state if user choose required options"""
     if state_next == "0":
@@ -136,7 +136,7 @@ def calc_window():
                                       font=("Times New Roman", 10), relief=GROOVE)
 
     button_close_calc_window = Button(window_calc_window, text="ZAMKNIJ", command=window_calc_window.destroy, font=("Times New Roman", 10), relief=GROOVE)
-    # GUI calc_window
+    
 
 
     frame_alkohol.grid(row=1, column=0)
@@ -448,14 +448,14 @@ def next(variable_radio_menu):
         load_project()
 
 
-#GUI:
+
 
 root = Tk()
 root.title("Tincture")
 variable_radio_menu = StringVar()
 variable_radio_menu.set("0")
 state_next = variable_radio_menu.get()
-#GUI Menu Główne - definiowanie:
+
 
 label_hello = Label(root, relief = RIDGE, text = "Witaj w Tincture!\nJest to program przeznaczony zarówno do wykonywania obliczeń koniecznych\n"
                          "do stworzenia nalewki, jak również pozwalający je projektować od zera\n"
@@ -466,7 +466,7 @@ radio_load_project = Radiobutton(root, text = "Wczytaj projekt", font = ("Times 
 button_next = Button(root, text = "DALEJ", font = ("Times New Roman", 10), command = lambda: next(variable_radio_menu.get()), relief = GROOVE, state=DISABLED)
 button_close = Button(root, text = "ZAMKNIJ", font = ("Times New Roman", 10), command = root.quit, relief = GROOVE)
 
-#GUI Menu Główne - umieszczanie:
+
 
 label_hello.grid(row= 0, column = 1, columnspan = 3, padx = 10, pady = 10)
 radio_calc_window.grid(row = 1, column = 1, padx = 10)

@@ -1,120 +1,120 @@
 
-zawartosc_lodowki =  {'jajka': 1, 'mleko': 1, 'ser gouda': 1, 'ser pleśniowy': 1,
+fridge_contenr =  {'jajka': 1, 'mleko': 1, 'ser gouda': 1, 'ser pleśniowy': 1,
 'serek topiony': 1, 'polędwica sopocka': 1, ' kiełbasa podwawelska': 1, 'boczek wędzony': 1, 'musztarda': 1, "majonez": 1}
-lista_produktow = list(zawartosc_lodowki.keys())
-liczba_kategorii = 10
+products_list = list(fridge_contenr.keys())
+number_category = 10
 
-class TNDecyzjaException(Exception):
+class YNDecisionException(Exception):
 
     def __init__(self):
         super().__init__('Decyzję należy podjąć wprowadzająć T lub N!')
 
-class NiezgodnaWartoscException(Exception):
+class ValueException(Exception):
 
     def __init__(self):
         super().__init__('Dostępnym opcją odpowiadają liczby od 1 do 5. Podana wartość nie mieści się w tym zakresie!')
 
-class TypNotStrException(Exception):
+class typeNotStrException(Exception):
 
     def __init__(self):
-        super().__init__('Nazwę produktu należy wprowadzić za pomocą liter!')
+        super().__init__('Nazwę productu należy wprowadzić za postrengthą liter!')
 
-class Zarzadzanie():
+class Management():
 
-    def szukanie_produktow(self, produkt):
-        if produkt in zawartosc_lodowki:
-            print('W lodówce jest następująca ilość {}: {}'.format(produkt, zawartosc_lodowki[produkt]))
+    def search_product(self, product):
+        if product in fridge_contenr:
+            print('W lodówce jest następująca ilość {}: {}'.format(product, fridge_contenr[product]))
         else:
-            print('Brak {} w lodówce'.format(produkt))
-    def dodawanie_poj_produktow(self, produkt, ilosc):
-            zawartosc_lodowki[produkt] =+ ilosc
-    def odejmowanie_poj_produktow(self, produkt, ilosc):
-        if produkt in zawartosc_lodowki:
-            if zawartosc_lodowki[produkt] >= ilosc:
-                zawartosc_lodowki[produkt] = zawartosc_lodowki[produkt] - ilosc
-                return zawartosc_lodowki
+            print('Brak {} w lodówce'.format(product))
+    def add_singe_product(self, product, quantity):
+            fridge_contenr[product] =+ quantity
+    def subtract_singe_product(self, product, quantity):
+        if product in fridge_contenr:
+            if fridge_contenr[product] >= quantity:
+                fridge_contenr[product] = fridge_contenr[product] - quantity
+                return fridge_contenr
             else:
-                print('za mało produktow')
+                print('za mało productow')
         else:
-            print('brak produktu w lodówce lub jego ilość jest niewystarczająca!')
-    def konczace_sie_produkty(self, minimalna):
-        licznik = 0
-        while licznik != liczba_kategorii:
-            produkt = lista_produktow[licznik]
-            if zawartosc_lodowki[produkt] < minimalna:
-                print("{} kończy się. Trzeba dokupić!".format(produkt))
-            licznik += 1
+            print('brak productu w lodówce lub jego ilość jest niewystarczająca!')
+    def endig_products(self, minimal):
+        counter = 0
+        while counter != number_category:
+            product = products_list[counter]
+            if fridge_contenr[product] < minimal:
+                print("{} kończy się. Trzeba dokupić!".format(product))
+            counter += 1
 
-zarzadzanie = Zarzadzanie
+managment = Management
 
 
 
-print('Witaj w zarządzaniu lodówką. Do wyboru masz jedną z 4 opcji. \n'
-          'Jeśli chcesz sprawdzić obecność produktu w lodówce wciśnij 1. \n'
-          'Jeśli chcesz dołożyć produkt do lodówki wyciśnij 2 \n'
-          'Jeśli chcesz wyjąć produkt z lodówki wciśnij 3 \n'
-          'Jeśli chcesz sprawdzić kończące się produkty wciśnij 4 \n'
-          'Jeśli chcesz sprawdzić zawartość lodówki wciśnij 5 \n'
+print('Witaj w zarządzaniu lodówką. Do chooseu masz jedną z 4 opcji. \n'
+          'Jeśli chcesz checkić obecność productu w lodówce wciśnij 1. \n'
+          'Jeśli chcesz dołożyć product do lodówki wyciśnij 2 \n'
+          'Jeśli chcesz wyjąć product z lodówki wciśnij 3 \n'
+          'Jeśli chcesz checkić kończące się producty wciśnij 4 \n'
+          'Jeśli chcesz checkić zawartość lodówki wciśnij 5 \n'
           'Jeśli chcesz wyjść wciśnij 6 \n'
           'Swój wybór zatwierdź wciskając ENTER')
 
-wybor = int(input())
+choose = int(input())
 
-if wybor >= 1 <= 5:
-    if wybor == 1:
-        print('Wprowadź nazwę produktu, który chcesz znaleźć:')
-        poszukiwany = input().lower()
-        if type(poszukiwany) != str:
-            raise TypNotStrException()
+if choose >= 1 <= 5:
+    if choose == 1:
+        print('Wprowadź nazwę productu, który chcesz znaleźć:')
+        wanted = input().lower()
+        if type(wanted) != str:
+            raise typeNotStrException()
         else:
-            zarzadzanie.szukanie_produktow(Zarzadzanie, poszukiwany)
-    elif wybor == 2:
-        print('Wprowadź nazwę produktu, który chcesz wprowadzić:')
-        wprowadzany = input().lower()
-        if type(wprowadzany) != str:
-            raise TypNotStrException()
-        elif wprowadzany in zawartosc_lodowki:
-            print('Wprowadź ilość {} umieszczanych w lodówce'.format(wprowadzany))
-            wprowadzana_ilosc = int(input())
-            zarzadzanie.dodawanie_poj_produktow(Zarzadzanie, wprowadzany, wprowadzana_ilosc)
+            managment.search_product(managment, wanted)
+    elif choose == 2:
+        print('Wprowadź nazwę productu, który chcesz wprowadzić:')
+        entry = input().lower()
+        if type(entry) != str:
+            raise typeNotStrException()
+        elif entry in fridge_contenr:
+            print('Wprowadź ilość {} umieszczanych w lodówce'.format(entry))
+            entry_quantity = int(input())
+            managment.add_singe_product(managment, entry, entry_quantity)
         else:
-            print('Nie znaleziono {} w bazie produktow. Czy chcesz go dodać? T/N'.format(wprowadzany))
-            decyzja = input().upper()
-            if type(decyzja) != str:
-                raise TypNotStrException
-            elif decyzja == 'N':
+            print('Nie znaleziono {} w bazie productow. Czy chcesz go dodać? T/N'.format(entry))
+            decision = input().upper()
+            if type(decision) != str:
+                raise typeNotStrException
+            elif decision == 'N':
                 pass
-            elif decyzja == 'T':
-                print('Wprowadź ilość {} umieszczanych w lodówce'.format(wprowadzany))
-                wprowadzana_ilosc = int(input())
-                zarzadzanie.dodawanie_poj_produktow(Zarzadzanie, wprowadzany, wprowadzana_ilosc)
-                liczba_kategorii = liczba_kategorii + 1
-                print(liczba_kategorii)
+            elif decision == 'T':
+                print('Wprowadź ilość {} umieszczanych w lodówce'.format(entry))
+                entry_quantity = int(input())
+                managment.add_singe_product(managment, entry, entry_quantity)
+                number_category = number_category + 1
+                print(number_category)
             else:
-                raise TNDecyzjaException
-    elif wybor == 3:
-        print('Wprowadź nazwę produktu, który chcesz wyjąć:')
-        wyjmowany = input().lower()
-        if type(wyjmowany) != str:
-            raise TypNotStrException()
+                raise YNDecisionException
+    elif choose == 3:
+        print('Wprowadź nazwę productu, który chcesz wyjąć:')
+        removable = input().lower()
+        if type(removable) != str:
+            raise typeNotStrException()
         else:
-            print('Wprowadź ilość {}, którą chcesz wyjąć:'.format(wyjmowany))
-            wyjmowana_ilosc = int(input())
-            zarzadzanie.odejmowanie_poj_produktow(Zarzadzanie, wyjmowany, wyjmowana_ilosc)
-    elif wybor == 4:
-        print('Czy chcesz wprowadzić minimalną ilość produktów? T/N')
-        decyzja = input().upper()
-        if type(decyzja) != str:
-            raise TypNotStrException
-        elif decyzja != 'T' or 'N':
-            raise TNDecyzjaException
-        elif decyzja == 'T':
-            wartosc_min = int(input())
+            print('Wprowadź ilość {}, którą chcesz wyjąć:'.format(removable))
+            removable_quantity = int(input())
+            managment.subtract_singe_product(managment, removable, removable_quantity)
+    elif choose == 4:
+        print('Czy chcesz wprowadzić minimalną ilość productów? T/N')
+        decision = input().upper()
+        if type(decision) != str:
+            raise typeNotStrException
+        elif decision != 'T' or 'N':
+            raise YNDecisionException
+        elif decision == 'T':
+            value_min = int(input())
         else:
-            wartosc_min = 3
-        zarzadzanie.konczace_sie_produkty(Zarzadzanie, wartosc_min)
-    elif wybor == 5:
-        print(zawartosc_lodowki)
+            value_min = 3
+        managment.endig_products(managment, value_min)
+    elif choose == 5:
+        print(fridge_contenr)
     else:
-        raise NiezgodnaWartoscException()
+        raise ValueException()
 
